@@ -1,0 +1,8 @@
+mixin bookShowcase(book = {})
+  .bookShowcase
+    a(href=`books/${book.goodreadsID}`)
+      img.bookShowcase__cover(src=`${book.photo || 'uploads/books.png'}`)
+    .bookShowcase__info
+      a.bookShowcase__info.bookShowcase__info--name(href=`books/${book.goodreadsID}`)= book.title
+      .bookShowcase__info.bookShowcase__info--author= book.author
+      .bookShowcase__info.bookShowcase__info--rating= `${book.rating} ★`

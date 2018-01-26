@@ -1,0 +1,53 @@
+.hero
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 90vh
+  width: 100%
+  background: url('../uploads/home_hero.jpg') no-repeat bottom center fixed
+  background-size: cover
+  &__form
+    &--input
+      border-top: 2px solid black
+      border-bottom: 2px solid black
+      border-left: 2px solid black
+      border-right: 0
+      padding: 0.5rem
+      width: 60vw
+      font-size: 25px
+    &--submit
+      border-top: 2px solid black
+      border-bottom: 2px solid black
+      border-right: 2px solid black
+      border-left: 0
+      padding: 0.5rem
+      font-size: 25px
+      background: white
+
+.showcase
+  display: flex
+  justify-content: space-around
+  flex-wrap: wrap
+  padding: 20px 40px
+  background-color: #F6F6F6
+  .bookShowcase
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin: 10px 50px
+    padding: 5px
+    .bookShowcase__cover
+      -webkit-box-shadow: 0 10px 6px -6px #777
+      -moz-box-shadow: 0 10px 6px -6px #777
+      box-shadow: 0 10px 6px -6px #777
+    .bookShowcase__info
+      display: flex
+      flex-direction: column
+      align-items: center
+      width: 400px
+      &--name
+        font-size: 1.5em
+        font-weight: 700
+        text-decoration: none
+        color: black
+        text-align: center

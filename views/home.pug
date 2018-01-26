@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_bookShowcase
+
+block content
+  .hero
+    form.hero__form(action="/search" method="POST")
+      input.hero__form--input(type="text" name="query" placeholder="What are you reading?")
+      input.hero__form--submit(type="submit" value="🔎")
+  .showcase
+    - const mistborn = { name: 'Mistborn', author: 'Brandon Shanderson', rating: 4.55, photo: 'https://images.gr-assets.com/books/1480717416m/68428.jpg' }
+    each book in books
+      +bookShowcase(book)

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .add
+    form.add__form(action="/add" method="POST")
+      input.add__form--input.add__form--hidden(type="text" name="goodreadsID" value=book['id'][0] readonly)
+      input.add__form--input.add__form--hidden(type="text" name="photo" value=h.getLargeImage(book['image_url'][0]) readonly)
+      input.add__form--input.add__form--hidden(type="text" name="description" value=book['description'][0] readonly)
+      input.add__form--input.add__form--hidden(type="text" name="rating" value=book['average_rating'][0] readonly)
+      label.add__form--label(for="title") Title
+      input.add__form--input(type="text" name="title" value=book['title'][0] readonly)
+      br
+      label.add__form--label(for="author") Author
+      input.add__form--input(type="text" name="author" value=book['authors'][0]['author'][0]['name'][0] readonly)
+      br
+      label.add__form--label(for="tags") Suggested Shelves
+      ul.shelves
+        each shelf in book['popular_shelves'][0]['shelf']
+          .shelf
+            input(type="checkbox" id=shelf['$']['name'] value=shelf['$']['name'] name="shelves")
+            label(for=shelf['$']['name'])= shelf['$']['name']
+      center
+        input.add__form--submit(type="submit" value="Add")
+  // pre= h.dump(book)

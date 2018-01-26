@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  .bookSingle
+    .bookSingle__cover
+      - const imageURL = h.getLargeImage(book['image_url'][0])
+      img(src=`${imageURL}` alt=`${book['title']}`)
+    .bookSingle__info
+      .bookSingle__info--name= book['title'][0]
+      .bookSingle__info--author= book['authors'][0]['author'][0]['name'][0]
+      .bookSingle__info--rating ★ #{book['average_rating'][0]}
+      .bookSingle__info--description!= book['description']
+      .bookSingle__info--pages #{book['num_pages'][0]} Pages
+      .bookSingle__info--reviewCount #{book['work'][0]['reviews_count'][0]['_']} Reviews
+      .bookSingle__info--publicationYear Publication Year: #{book['publication_year'][0]}
+      .bookSingle__info--publisher= book['publisher'][0]
+      .bookSingle__info--GoodreadsLink
+        a(href=`${book['url'][0]}`) Visit on Goodreads ➡️
+      a(href=`/add/${book['id'][0]}`)
+        button.bookSingle__info--add Add to Library!
+  h1.heading About the Author
+  .author
+    .author__image
+      - const authorImageURL = book['authors'][0]['author'][0]['image_url'][0]['_'].slice(1,-1)
+      a(href=`${book['authors'][0]['author'][0]['link'][0]}`)
+        img(src=`${authorImageURL}`, alt=`${book['authors'][0]['author'][0]['name'][0]}`)
+    .author__info
+      .author__info--name= book['authors'][0]['author'][0]['name'][0]
+      .author__info--rating ★ #{book['authors'][0]['author'][0]['average_rating'][0]}
+      .author__info--GoodreadsLink
+        a(href=`${book['authors'][0]['author'][0]['name'][0]['link'][0]}`) View in Goodreads
+  //- .tags
+  //-   .tag
+  //-     each tag in book['popular_shelves'][0]['shelf']
+  //-       .tag__name= tag['$']['name']
+  //-       .tag__count= tag['$']['count']
+  h1.heading Similar Books
+  .results
+    each b in book['similar_books'][0]['book']
+      - const bookID = b['id'][0]
+      - const authorID = b['authors'][0]['author'][0]['id'][0]
+      - const imageURL = (b['image_url'][0])
+      - const author = b['authors'][0]['author'][0]['name'][0]
+      - const stars = typeof(b['average_rating'][0]) === 'string' ? b['average_rating'][0] : b['average_rating'][0]['_']
+      - let name = b['title'][0]
+      - name = name.length > 50 ? name.split(' ').slice(0, 15).join(' ') + '...' : name
+      .bookSearchCard
+        a.bookSearchCard__cover(href=`/books/${bookID}`)
+          img(src=`${imageURL}`)
+        .bookSearchCard__info
+          .bookSearchCard__info--name
+            a(href=`/books/${bookID}`)= name
+          .bookSearchCard__info--author
+            a(href=`/author/${authorID}`)= author
+          .bookSearchCard__info--rating ★ #{stars}

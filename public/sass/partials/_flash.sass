@@ -1,0 +1,28 @@
+.flash-messages
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  // background-color: #FFF8F9
+  .flash
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 4px 0
+    border-radius: 5px
+    border: 5px solid #BFE06C
+    &--error
+      border: 5px solid red
+    &__text
+      margin-right: 5px
+      margin-left: 50px
+      font-size: 1.3em
+      font-weight: 700
+    &__remove
+      background: black
+      color: white
+      border-radius: 50%
+      border: none
+      margin-right: 50px
+      &:hover
+        border: 1px solid blue

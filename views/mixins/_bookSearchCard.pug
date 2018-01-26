@@ -1,0 +1,17 @@
+mixin bookSearchCard(book)
+  - const bookID = book['best_book'][0]['id'][0]['_']
+  - const authorID = book['best_book'][0]['author'][0]['id'][0]['_']
+  - const imageURL = book['best_book'][0]['image_url']
+  - const author = book['best_book'][0]['author'][0]['name'][0]
+  - const stars = typeof(book['average_rating'][0]) === 'string' ? book['average_rating'][0] : book['average_rating'][0]['_']
+  - let name = book['best_book'][0]['title'][0]
+  - name = name.length > 50 ? name.split(' ').slice(0, 15).join(' ') + '...' : name
+  .bookSearchCard
+    a.bookSearchCard__cover(href=`/books/${bookID}`)
+      img(src=`${imageURL}`)
+    .bookSearchCard__info
+      .bookSearchCard__info--name
+        a(href=`/books/${bookID}`)= name
+      .bookSearchCard__info--author
+        a(href=`/author/${authorID}`)= author
+      .bookSearchCard__info--rating ★ #{stars}

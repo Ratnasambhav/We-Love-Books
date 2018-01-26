@@ -1,0 +1,18 @@
+extends layout
+
+include mixins/_bookSearchCard
+
+block content
+  if books
+    center
+      h2= title
+    .results
+      each book in books['GoodreadsResponse']['search'][0]['results'][0]['work']
+        +bookSearchCard(book)
+  else
+    .hero
+      form.hero__form(action="/search" method="POST")
+        input.hero__form--input(type="text" name="query" placeholder="What are you reading?")
+        input.hero__form--submit(type="submit" value="🔎")
+    center
+      h1 Search for any Book or Author!

@@ -1,0 +1,37 @@
+.results
+  display: flex
+  flex-wrap: wrap
+  margin: 1.25em
+
+.bookSearchCard
+  display: flex
+  margin: 1.25em 0 1.25em 1.25em
+  width: calc(33.3333% - 1.25em)
+  padding: 2px
+  box-shadow: 0 0 10px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.05)
+  border-radius: 5px
+  background-color: #F6F6F6
+  &__cover
+    display: flex
+    flex-shrink: 0
+    flex-grow: 0
+    mergin-right: 1em
+  &__info
+    display: flex
+    flex-direction: column
+    justify-content: center
+    div
+      padding: 5px
+    &--name, &--author
+      a
+        text-decoration: none
+        color: black
+    &--name
+      font-size: 1.3em
+      font-weight: 700
+    &--author
+      a
+        // font-size: 1.35em
+        font-weigth: 500
+    &--rating, &--ratingCount, &--reviewCount
+      font-weight: 300
